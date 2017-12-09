@@ -7,7 +7,7 @@ def index(request):
 
 def waiting(request):
     text = "Waiting..."
-    return HttpResponse(text)
+    return render(request, "waiting.html", {})
 
 def front(request):
     text = "Front of queue"
