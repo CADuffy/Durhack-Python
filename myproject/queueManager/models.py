@@ -5,6 +5,10 @@ class main(models.Model):
     companies = []
 
 
+class PhoneNumber(models.Model):
+    pos = models.IntegerField()
+    number0 = models.CharField(max_length=30)
+
 class Company(models.Model):
     queue = []
 
