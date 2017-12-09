@@ -1,7 +1,5 @@
-from django.urls import path
+from django.conf.urls import patterns, include, url
 
 from . import views
 
-urlpatterns = [
-    path("", views.index, name="index")   
-]
+urlpatterns = patterns('', url(r'^hello/', 'myapp.views.hello', name = 'hello'),)
