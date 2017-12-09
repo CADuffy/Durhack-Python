@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    text = "Enter ID:"
-    return HttpResponse(text)
+    #text = "Enter ID:"
+    return render(request, "index.html", {})
 
 def waiting(request):
     text = "Waiting..."
