@@ -12,7 +12,7 @@
      <td valign="top" align="left" background="{%static 'images\everypage.jpg'%}" style="background-repeat:no-repeat; background-size:cover;">
          <center><h1 class="blue-text text-center font-family">iQueue - Company</h1>
              <h2 class = "text-center font-family">The app that keeps track of how many customers you have</h2>
-         <form action="/queueManager/register-company">
+<form action="/queueManager/register-company">
   Company name: <input type="text" required placeholder="" name="company-name">
   <br />
   <br />
@@ -22,10 +22,27 @@
   Company type: <input type="text" required placeholder="" name="company-type">
   <br />
   <br />
-  <button type="submit"><p2>Submit</p2></button>
+
+  <button type="submit"><p2>Register</p2></button>
+         </form>
+
+             <form action="/queueManager/login-company">
+  Company name: <input type="text" required placeholder="" name="company-name">
+  <br />
+  <br />
+  Company password: <input type="text" required placeholder="" name="company-pass">
+  <br />
+
+  <br />
+
+    <button type="submit"><p2>Login</p2></button>
+         </form>
+
+
+
              <br /> <br /> <br />
 
-</form></center>
+</center>
      </td>
    </tr>
  </table>

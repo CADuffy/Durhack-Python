@@ -3,10 +3,7 @@ from django.db import models
 
 class PhoneNumber(models.Model):
     pos = models.IntegerField(default=0, primary_key=True)
-    number = new_number #models.CharField(max_length=30)
-    class Meta:
-        db_table = table_name
-
+    numbers = models.CharField(max_length=30)
 
 class companyRecord(models.Model):
     id = models.IntegerField(default=0, primary_key=True)
