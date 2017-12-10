@@ -11,9 +11,13 @@ def index(request):
 def waiting(request):
     inp_value = request.GET.get("id")
     # add inp_value to mysql database
-    entry = PhoneNumber(pos=5,numbers0=inp_value)
+    entry = PhoneNumber(numbers0=inp_value)
     entry.save()
-    return render(request, "waiting.html", {"number": inp_value})
+    numbers =  PhoneNumber.objects.raw("SELECT * FROM main.queues WHERE numbers0 = " + inp_value)
+    last = 0;
+    for num in numbers:
+        last = num.pos
+    return render(request, "waiting.html", {"number": last})
 
 def front(request):
     return render(request, "front.html", {})
