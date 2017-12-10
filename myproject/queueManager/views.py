@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db import models
+from django.db import connection
 
 from .models import PhoneNumber
 
@@ -31,5 +32,6 @@ def company(request):
     return render(request, "company waiting.html", {"last": actualLast})
 
 def nextperson(request):
-    PhoneNumber.objects.raw("DELETE FROM main.queues LIMIT 1")
+    cursor = connection['default'].cursor()
+    cursor.execute("DELETE FROM main.queues LIMIT 1")
     return redirect(company)
