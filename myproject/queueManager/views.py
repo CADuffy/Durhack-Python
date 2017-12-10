@@ -32,5 +32,5 @@ def company(request):
     return render(request, "company waiting.html", {"last": actualLast})
 
 def nextperson(request):
-    PhoneNumber.objects.filter("SELECT FROM main.queues LIMIT 1").delete()
+    PhoneNumber.objects.filter(pos = PhoneNumber.objects.raw("SELECT * FROM main.queues LIMIT 1")[0].pos).delete()
     return redirect(company)
