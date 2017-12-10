@@ -13,7 +13,7 @@ def waiting(request):
     # add inp_value to mysql database
     entry = PhoneNumber(numbers0=inp_value)
     entry.save()
-    numbers =  PhoneNumber.objects.raw("SELECT * FROM main.queues WHERE numbers0 = " + inp_value)
+    numbers =  PhoneNumber.objects.raw("SELECT * FROM main.queues WHERE numbers0 = " + str(inp_value))
     last = 0;
     for num in numbers:
         last = num.pos
