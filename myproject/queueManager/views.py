@@ -14,23 +14,22 @@ def waiting(request):
     # add inp_value to mysql database
     entry = PhoneNumber(numbers0=inp_value)
     entry.save()
-    numbers = PhoneNumber.objects.raw("SELECT * FROM main.queues WHERE numbers0 = " + inp_value)
-    last = 0;
-    for num in numbers:
-        last = num.pos
-    return render(request, "waiting.html", {"number": last})
+    return render(request, "waiting.html", {"number": get_last()})
 
 def front(request):
     return render(request, "front.html", {})
 
 def company(request):
-    first = PhoneNumber.objects.raw("SELECT * FROM main.queues LIMIT 1")
-    last = PhoneNumber.objects.raw("SELECT * FROM main.queues ORDER BY  pos DESC LIMIT 1")
-
-    actualLast = last[0].pos - (first[0].pos -1)
-
-    return render(request, "company waiting.html", {"last": actualLast})
+    return render(request, "company waiting.html", {"last": get_last()})
 
 def nextperson(request):
     PhoneNumber.objects.filter(pos = PhoneNumber.objects.raw("SELECT * FROM main.queues LIMIT 1")[0].pos).delete()
     return redirect(company)
+
+def get_last():
+    first = PhoneNumber.objects.raw("SELECT * FROM main.queues LIMIT 1")
+    last = PhoneNumber.objects.raw("SELECT * FROM main.queues ORDER BY pos DESC LIMIT 1")
+    return (last[0].pos - (first[0].pos - 1))
+
+def get_first():
+    return PhoneNumber.objects.raw("SELECT * FROM main.queues LIMIT 1")
