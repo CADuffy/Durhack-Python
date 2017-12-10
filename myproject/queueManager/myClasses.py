@@ -7,12 +7,13 @@ class main:
 
     def __init__(self):
         companies = []
+        customers = []
 
     def add_company(self, name, category):
         companies.append(Company(name, category))
 
     def create_customer(self, phoneNumber):
-
+        customers.append(Customer(phoneNumber))
 
 class Company:
     self.name = ""
@@ -33,7 +34,7 @@ class Company:
 
     def increment_customer_positions(self):
         for x in range(0, len(Company.queue)):
-            Company.queue[x].increment_position()
+            Company.queue[x].decrement_position()
 
     def add_customer(self, customer, index):
         queue.append(customer)
@@ -43,21 +44,21 @@ class Company:
 class Customer:
     self.phoneNumber = ""
     self.positions = []
-    self.queues = []
+    self.companies = []
 
     def __init__(self):
         self.phoneNumber = phoneNumber
 
-    def get_position(self, queue):
-        queue.get_customer_position(self)
+    def get_position(self, company):
+        company.get_customer_position(self)
 
-    def set_position(self, queue):
-        queue.get_customer_position(self)
+    def set_position(self, company):
+        company.get_customer_position(self)
 
     def join_queue(self, company):
         company.add_customer(self, len(queues) - 1)
         queues.append(company)
 
-    def increment_position(self):
-        Customer.position -= 1
+    def decrement_position(self):
+        self.position -= 1
 
