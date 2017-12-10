@@ -1,10 +1,12 @@
 from django.db import models
 
+
 class PhoneNumber(models.Model):
     pos = models.IntegerField(default=0, primary_key=True)
-    number = models.CharField(max_length=30)
+    number = new_number #models.CharField(max_length=30)
     class Meta:
-        db_table = 'queues'
+        db_table = table_name
+
 
 class companyRecord(models.Model):
     id = models.IntegerField(default=0, primary_key=True)

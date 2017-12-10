@@ -16,8 +16,10 @@ def index(request):
 
 
 def waiting(request):
-    connection.cursor().execute("INSERT INTO  main." + request.GET.get('queue-name') + " VALUES (" +
-                                request.GET.get('phone-number') + ")")
+    '''connection.cursor().execute("INSERT INTO  main." + request.GET.get('queue-name') + " VALUES (" +
+                                request.GET.get('phone-number') + ")")'''
+    test = PhoneNumber(number=request.GET.get('phone-number'))
+    test.save()
     return render(request, "waiting.html", {"number": get_last(request.GET.get('queue-name'))})
 
 
@@ -37,7 +39,7 @@ def register_company(request):
     #Makes a queues table for the company
     connection.cursor().execute("CREATE TABLE main." + request.GET.get("company-name") + " (pos int NOT NULL " +
                                 "AUTO_INCREMENT, numbers Text, PRIMARY KEY(pos))")
-    return render(request, "company waiting.html", {"number": 0})
+    return render(request, "company waiting.html", {"last": 0, "name": request.GET.get("company-name")})
 
 
 def login_company(request):
@@ -52,7 +54,7 @@ def login_company(request):
     if curr_row == null:
         print("Details incorrect")
     else:
-        return render(request, "company waiting.html", {"last": get_last(curr_row.company_name)})
+        return render(request, "company waiting.html", {"last": get_last(curr_row.company_name), "name": curr_row.company_name})
 
 
 def nextperson(request):
@@ -62,10 +64,10 @@ def nextperson(request):
 
 
 def get_last(table):
-    first = PhoneNumber.objects.raw("SELECT * FROM main.queues LIMIT 1")
-    last = PhoneNumber.objects.raw("SELECT * FROM main.queues ORDER BY pos DESC LIMIT 1")
+    first = PhoneNumber.objects.raw("SELECT * FROM main." + table + " LIMIT 1")
+    last = PhoneNumber.objects.raw("SELECT * FROM main." + table + " ORDER BY pos DESC LIMIT 1")
     return last[0].pos - (first[0].pos - 1)
 
 
-def get_first():
-    return PhoneNumber.objects.raw("SELECT * FROM main.queues LIMIT 1")
+def get_first(table):
+    return PhoneNumber.objects.raw("SELECT * FROM main." + table + " LIMIT 1")
