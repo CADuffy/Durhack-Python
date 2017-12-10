@@ -32,6 +32,5 @@ def company(request):
     return render(request, "company waiting.html", {"last": actualLast})
 
 def nextperson(request):
-    cursor = connection['default'].cursor()
-    cursor.execute("DELETE FROM main.queues LIMIT 1")
+    PhoneNumber.objects.filter("SELECT FROM main.queues LIMIT 1").delete()
     return redirect(company)
