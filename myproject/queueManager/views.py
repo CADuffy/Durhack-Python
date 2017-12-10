@@ -23,12 +23,11 @@ def front(request):
     return render(request, "front.html", {})
 
 def company(request):
+
     first = PhoneNumber.objects.raw("SELECT * FROM main.queues LIMIT 1")
     last = PhoneNumber.objects.raw("SELECT * FROM main.queues ORDER BY  pos DESC LIMIT 1")
 
     actualLast = last[0].pos - (first[0].pos -1)
 
-    inp_value = request.GET.get("next-person")
-    print(inp_value)
 
     return render(request, "company waiting.html", {"last": actualLast})
