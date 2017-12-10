@@ -34,10 +34,9 @@ def register_company(request):
                           company_password=request.GET.get("company-pass"),
                           company_type=request.GET.get("company-type"))
     entry.save()
-
     #Makes a queues table for the company
-    connection.cursor().execute("CREATE TABLE main." + request.GET.get("company-name") + " (pos Text NOT NULL " +
-                                "AUTO_INCREMENT, numbers Text)")
+    connection.cursor().execute("CREATE TABLE main." + request.GET.get("company-name") + " (pos int NOT NULL " +
+                                "AUTO_INCREMENT, numbers Text, PRIMARY KEY(pos))")
     return render(request, "company waiting.html", {"number": 0})
 
 
@@ -57,8 +56,9 @@ def login_company(request):
 
 
 def nextperson(request):
-    PhoneNumber.objects.filter(pos = PhoneNumber.objects.raw("SELECT * FROM main." + ? + "LIMIT 1")[0].pos).delete()
-    return redirect(company)
+    #PhoneNumber.objects.filter(pos = PhoneNumber.objects.raw("SELECT * FROM main." + ? + "LIMIT 1")[0].pos).delete()
+    #return redirect(company)
+    return render(request, "company waiting.html", {"last": get_last(curr_row.company_name)})
 
 
 def get_last(table):
