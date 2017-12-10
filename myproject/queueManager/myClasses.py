@@ -34,7 +34,7 @@ class Company:
 
     def increment_customer_positions(self):
         for x in range(0, len(Company.queue)):
-            Company.queue[x].decrement_position()
+            Company.queue[x].decrement_position(self)
 
     def add_customer(self, customer, index):
         queue.append(customer)
@@ -59,6 +59,6 @@ class Customer:
         company.add_customer(self, len(queues) - 1)
         queues.append(company)
 
-    def decrement_position(self):
-        self.position -= 1
+    def decrement_position(self, company):
+        self.position[company.get_customer_position(self)] -= 1
 
