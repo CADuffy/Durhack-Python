@@ -23,8 +23,8 @@ def front(request):
     return render(request, "front.html", {})
 
 def company(request):
-    if request.GET.get('next-person'):
-        PhoneNumber.objects.raw("DELETE FROM main.queues LIMIT 1")
+    #if request.GET.get('next-person'):
+        #PhoneNumber.objects.raw("DELETE FROM main.queues LIMIT 1")
 
     first = PhoneNumber.objects.raw("SELECT * FROM main.queues LIMIT 1")
     last = PhoneNumber.objects.raw("SELECT * FROM main.queues ORDER BY  pos DESC LIMIT 1")
