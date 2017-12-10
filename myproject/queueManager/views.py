@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db import models
 
@@ -32,3 +32,7 @@ def company(request):
     actualLast = last[0].pos - (first[0].pos -1)
 
     return render(request, "company waiting.html", {"last": actualLast})
+
+def nextperson(request):
+    
+    return redirect(company)
