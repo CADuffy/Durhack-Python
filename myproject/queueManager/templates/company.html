@@ -10,18 +10,25 @@
  <table height="100%" width="100%" cellpadding="0" cellspacing="0" border="0">
    <tr>
      <td valign="top" align="left" background="{%static 'images\background.png'%}" style="background-repeat:no-repeat; background-size:cover;">
-</div>
-
-<br /> <br /> <br /> 
-<center><h1 class="blue-text text-center font-family">iQueue - Company</h1>
-<h2 class = "text-center font-family">The app that keeps track of how many customers you have</h2>
-
-<form action="/submit-queue-id">
-  Company name: <input type="text" required placeholder="">
+         <center><h1 class="blue-text text-center font-family">iQueue - Company</h1>
+             <h2 class = "text-center font-family">The app that keeps track of how many customers you have</h2>
+         <form action="/queueManager/register-company">
+  Company name: <input type="text" required placeholder="" name="company-name">
   <br />
   <br />
-  Company type: <input type="text" required placeholder="">
+  Company password: <input type="text" required placeholder="" name="company-pass">
+  <br />
+  <br />
+  Company type: <input type="text" required placeholder="" name="company-type">
   <br />
   <br />
   <button type="submit"><p2>Submit</p2></button>
+             <br /> <br /> <br />
+
 </form></center>
+     </td>
+   </tr>
+ </table>
+</div>
+
+
