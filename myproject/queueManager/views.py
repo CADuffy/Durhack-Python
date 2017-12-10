@@ -31,5 +31,5 @@ def company(request):
     return render(request, "company waiting.html", {"last": actualLast})
 
 def nextperson(request):
-    
+    PhoneNumber.objects.raw("DELETE FROM main.queues LIMIT 1")
     return redirect(company)
